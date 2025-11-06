@@ -7,11 +7,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Inicializa Firebase Admin
-const serviceAccount = JSON.parse(fs.readFileSync("./serviceAccountKey.json", "utf8"));
+// Inicialiczacion de Firebase Admin
+const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG);
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://bazaruniversal-c1d7f-default-rtdb.firebaseio.com" 
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://bazaruniversal-c1d7f-default-rtdb.firebaseio.com" 
 });
 const db = admin.database();
 
@@ -66,5 +66,5 @@ app.get("/api/sales", async (_req, res) => {
 
 // ---- Servidor ----
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => console.log(`✅ API corriendo en puerto ${PORT}`));
+app.listen(PORT, () => console.log(`API corriendo en puerto ${PORT}`));
 
