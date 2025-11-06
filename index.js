@@ -13,7 +13,7 @@ admin.initializeApp({
 });
 const db = admin.database();
 
-// --- GET /api/items?q= ---
+
 app.get("/api/items", async (req, res) => {
   try {
     const q = (req.query.q || "").toLowerCase();
@@ -33,7 +33,7 @@ app.get("/api/items", async (req, res) => {
   }
 });
 
-// --- ✅ NUEVO GET /api/items/:id ---
+
 app.get("/api/items/:id", async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -48,7 +48,7 @@ app.get("/api/items/:id", async (req, res) => {
   }
 });
 
-// --- POST /api/addSale ---
+
 app.post("/api/addSale", async (req, res) => {
   try {
     const { productId, qty = 1 } = req.body;
@@ -72,7 +72,7 @@ app.post("/api/addSale", async (req, res) => {
   }
 });
 
-// --- GET /api/sales ---
+
 app.get("/api/sales", async (_req, res) => {
   try {
     const snap = await db.ref("sales").once("value");
@@ -85,4 +85,4 @@ app.get("/api/sales", async (_req, res) => {
 });
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => console.log(`✅ API corriendo en puerto ${PORT}`));
+app.listen(PORT, () => console.log(`API corriendo en puerto ${PORT}`));
